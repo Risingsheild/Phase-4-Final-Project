@@ -35,14 +35,14 @@ LOL = Game.create(
     title: "League of Legends",
     genre: "Battle Arena",
     image_url: "http://appinformers.com/wp-content/uploads/2017/03/league.png",
-    platform_id: pc.id
+    platform_id: pc
 )
 
 Halo = Game.create(
     title: "Halo",
     genre: "Action-Adventure",
     image_url: "https://static.trueachievements.com/customimages/039459.jpg",
-    platform_id: xbox.id
+    platform_id: xbox
 )
 
 Gow = Game.create(
@@ -50,27 +50,27 @@ Gow = Game.create(
     genre: "Action-Adventure",
     image_url: "https://i2.wp.com/wallpapersfortech.com/wp-content/uploads/2018/04/241B3EAB-771D-4D3B-AB6B-841C6BBF4C8F.jpeg?ssl=1",
     platform_id: playstation
-)
+
 
 LostArk = Game.create(
     title: "Lost Ark",
     genre: "Adventure"
     image_url: "https://pbs.twimg.com/profile_images/984648091876732928/pLphONCS_400x400.jpg"
-    platform_id: pc.id
+    platform_id: pc
 )
 
 Gears5 = Game.create(
     title: "Gears 5"
     genre: "Third Person Shooter"
     image_url: "https://cdn.wccftech.com/wp-content/uploads/2019/01/gears5_logo.jpg"
-    platform_id: xbox.id
+    platform_id: xbox
 )
 
 Horizon = Game.create(
     title: "Horizon Forbidden West"
     genre: "Action Role Playing"
     image_url: "https://miro.medium.com/max/1080/1*2J3OLrKHjAS_5Y1PigCYsQ.jpeg"
-    platform_id: playstation.id
+    platform_id: playstation
 )
 
 

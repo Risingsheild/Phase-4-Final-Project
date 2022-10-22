@@ -14,6 +14,7 @@ class GamesController < ApplicationController
             title: params[:title],
             genre: params[:genre],
             image_url: params[:image_url]
+            platform_id: params[:platform_id]
         )
         render json: game, status: :created
     end
