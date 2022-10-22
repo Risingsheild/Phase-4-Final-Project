@@ -14,17 +14,17 @@ user1 = User.create(username: "Nick Wells", password: "123")
 
 #-----PLATFORMS-----
 
-pc = PlatForm.create(
+pc = Platform.create(
     title: "PC",
     image_url: "https://www.pcgamesn.com/wp-content/uploads/2019/02/Best-Gaming-PC.jpg"
 )
 
-xbox = PlatForm.create(
+xbox = Platform.create(
     title: "XBOX",
     image_url: "https://bandwidthblog.co.za/wp-content/uploads/2020/09/xbox-series-x-s-price-south-africa.jpg"
 )
 
-playstation = PlatForm.create(
+playstation = Platform.create(
     title: "PlayStation",
     image_url: "https://static.techspot.com/images2/news/bigimage/2020/11/2020-11-06-image-24.jpg"
 )

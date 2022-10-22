@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :reviews
-  resources :platforms, only: [:index, :show]
+  resources :platforms, only: [:index, :show, :create]
   resources :games, only: [:index, :show, :create]
   resources :users, only: [:index, :create]
 
