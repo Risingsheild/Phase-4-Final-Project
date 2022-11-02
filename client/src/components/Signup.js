@@ -1,4 +1,4 @@
-import {Link, useNavigate } from 'react-router'
+import {Link, useNavigate } from 'react-router-dom'
 import {useState} from 'react'
 import {Button, Container, FormControl, Grid, TextField, Typography } from '@mui/material'
 
@@ -34,7 +34,7 @@ function SignUp ({setUser}) {
             <Grid item xs={12} align="center" justify="center">
                 <FormControl sx={{ m: 2 }}>
                     <Typography justifySelf={'center'}>
-                        Login
+                        Sign Up Here
                     </Typography>
                     <TextField
                         sx={{ m: 2 }}
@@ -69,7 +69,7 @@ function SignUp ({setUser}) {
                 <Button
                     variant='contained'
                     component={Link}
-                    to="/signup"
+                    to="/"
                     align="center"
                     justify="center"
                 >
