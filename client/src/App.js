@@ -5,6 +5,7 @@ import SignUp from "./components/Signup"
 import NavBar from "./components/NavBar"
 import ReviewForm from "./components/ReviewForm"
 import "./components/style.css"
+import GameList from "./components/GameList";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>
+        <Route path='/games' exact element={<GameList/>}/>
         <Route path='/reviews' exact element={<ReviewForm/>}/>
       </Routes>
     </div>
