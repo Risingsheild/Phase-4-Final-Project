@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
 import GameCard from "./GameCard";
+import NavBar from "./NavBar";
 
-function GameList() {
-    const [games, setGames] = useState([])
-        console.log(games);
-
-    useEffect(() => {
-        fetch('/games')
-        .then(r => r.json())
-        .then(data => setGames(data))
-    },[])
+function GameList({games}) {
 
     return(
         <div className="gamesList">
+            <NavBar />
             {games.map((eachGame) => (
                 <GameCard 
                 key={eachGame.id}

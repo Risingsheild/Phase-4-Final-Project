@@ -48,6 +48,7 @@ function GameForm({onAddGame}){
             setImage(defaultImage)
             setPlatform("")
         })
+        
     }
 
     return(

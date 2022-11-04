@@ -1,4 +1,5 @@
 import GameCard from "./GameCard"
+import NavBar from "./NavBar"
 
 
 function PcGames({games}){
@@ -7,6 +8,7 @@ function PcGames({games}){
     return(
         <div className="Card">
             <h2> PC GAMES HERE </h2>
+            <NavBar/>
             <ul>
                 <GameCard games={pcGames} title={pcGames.title}/>
             </ul>
