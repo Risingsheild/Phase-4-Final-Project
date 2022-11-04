@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom"
 import Login from "./components/Login";
 import SignUp from "./components/Signup"
 import NavBar from "./components/NavBar"
+import ReviewForm from "./components/ReviewForm"
 import "./components/style.css"
 
 
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>
+        <Route path='/reviews' exact element={<ReviewForm/>}/>
       </Routes>
     </div>
   );

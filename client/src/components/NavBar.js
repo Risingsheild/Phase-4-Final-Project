@@ -5,6 +5,7 @@ function NavBar() {
     return (
         <div className='navBar'>
             <NavLink to='/'>Home Page</NavLink>
+            <NavLink to='/games'>All Games</NavLink>
             <NavLink to='/pc/games'>PC games</NavLink>
             <NavLink to='/xbox/games'>Xbox games</NavLink>
             <NavLink to='/playstation/games'>Playstation games</NavLink>
