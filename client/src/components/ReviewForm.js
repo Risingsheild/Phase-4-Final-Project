@@ -2,7 +2,7 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 
 function ReviewForm(){
-    onst[reviewData, setReviewData] = useState({
+    const[reviewData, setReviewData] = useState({
         comment: "Add Comment",
         user_id: "Add user_id",
         game_id: "Add game_id"

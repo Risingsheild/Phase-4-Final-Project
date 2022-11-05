@@ -27,7 +27,7 @@ function App() {
 
 useEffect(() => {
   fetch('/games')
-  .then(r => r.json())
+  .then((r) => r.json())
   .then(data => setGames(data))
 },[])
 
@@ -37,7 +37,7 @@ function onAddGame(newGame){
 
   return (
     <div className="App">
-      <h1>Please Log In or Sign Up for an Account to see the Game selections!</h1>
+      <h1>Please leave a Review</h1>
       <Routes>
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>
