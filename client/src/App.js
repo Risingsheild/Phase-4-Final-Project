@@ -5,13 +5,16 @@ import SignUp from "./components/Signup"
 import ReviewForm from "./components/ReviewForm"
 import GameList from "./components/GameList";
 import GameForm from "./components/GameForm";
+import PCgames from "./components/PCgames";
 import "./components/style.css"
+import ReviewList from "./components/ReviewList";
 
 
 
 function App() {
     const [user, setUser] = useState('')
     const [games, setGames] = useState([])
+    const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch('/me')
@@ -31,6 +34,12 @@ useEffect(() => {
   .then(data => setGames(data))
 },[])
 
+useEffect(() => {
+  fetch('/reviews')
+  .then((r) => r.json())
+  .then(data => setReviews(data))
+},[])
+
 function onAddGame(newGame){
   setGames([...games, newGame])
 }
@@ -42,8 +51,9 @@ function onAddGame(newGame){
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>
         <Route path='/games' exact element={<GameList games={games}/>}/>
-        <Route path='/reviews' exact element={<ReviewForm/>}/>
+        <Route path='/reviews' exact element={<ReviewList/>}/>
         <Route path='/addgames' exact element={<GameForm onAddGame={onAddGame}/>}/>
+        <Route path='/pc/games' exact element={<PCgames games={games}/>}/>
       </Routes>
     </div>
   );

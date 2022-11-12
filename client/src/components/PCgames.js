@@ -2,7 +2,7 @@ import GameCard from "./GameCard"
 import NavBar from "./NavBar"
 
 
-function PcGames({games}){
+function PCgames({games}){
     const pcGames = games.filter((game) => game.platform_id === 'pc')
 
     return(
@@ -18,4 +18,4 @@ function PcGames({games}){
 
 }
 
-export default PcGames
+export default PCgames

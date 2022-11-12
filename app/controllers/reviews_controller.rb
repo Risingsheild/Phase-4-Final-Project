@@ -31,6 +31,8 @@ class ReviewsController < ApplicationController
         else 
             render json: { error: "Review Not Found"}, status: :not_found
         end
+    end
+    
 
     ## Destroy Method 
 

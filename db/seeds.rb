@@ -5,14 +5,22 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'byebug'
+
+User.destroy_all
+Platform.destroy_all
+Game.destroy_all
+Review.destroy_all
 
 puts "Seeding Data"
 
 #----USERS-----
+puts "Seeding Users"
 
 user1 = User.create(username: "Nick Wells", password: "123")
 
 #-----PLATFORMS-----
+puts "Seeding Platforms"
 
 pc = Platform.create(
     title: "PC",
@@ -30,6 +38,7 @@ playstation = Platform.create(
 )
 
 # ----GAMES----
+puts "Seeding Games"
 
 LOL = Game.create(
     title: "League of Legends",
@@ -50,67 +59,67 @@ Gow = Game.create(
     genre: "Action-Adventure",
     image_url: "https://i2.wp.com/wallpapersfortech.com/wp-content/uploads/2018/04/241B3EAB-771D-4D3B-AB6B-841C6BBF4C8F.jpeg?ssl=1",
     platform_id: playstation
-
+)
 
 LostArk = Game.create(
     title: "Lost Ark",
-    genre: "Adventure"
-    image_url: "https://pbs.twimg.com/profile_images/984648091876732928/pLphONCS_400x400.jpg"
+    genre: "Adventure",
+    image_url: "https://pbs.twimg.com/profile_images/984648091876732928/pLphONCS_400x400.jpg",
     platform_id: pc
 )
 
 Gears5 = Game.create(
-    title: "Gears 5"
-    genre: "Third Person Shooter"
-    image_url: "https://cdn.wccftech.com/wp-content/uploads/2019/01/gears5_logo.jpg"
+    title: "Gears 5",
+    genre: "Third Person Shooter",
+    image_url: "https://cdn.wccftech.com/wp-content/uploads/2019/01/gears5_logo.jpg",
     platform_id: xbox
 )
 
 Horizon = Game.create(
-    title: "Horizon Forbidden West"
-    genre: "Action Role Playing"
-    image_url: "https://miro.medium.com/max/1080/1*2J3OLrKHjAS_5Y1PigCYsQ.jpeg"
+    title: "Horizon Forbidden West",
+    genre: "Action Role Playing",
+    image_url: "https://miro.medium.com/max/1080/1*2J3OLrKHjAS_5Y1PigCYsQ.jpeg",
     platform_id: playstation
 )
 
 
 # ----REVIEWS---
+puts "Seeding Reviews"
 
 review1 = Review.create(
-    comment: "Played many of hours and has consitent updates to keep it fun and new"
-    user_id: user1.id
-    game_id: LOL.id
+    comment: "Played many of hours and has consitent updates to keep it fun and new",
+    user_id: user1.username,
+    game_id: LOL.title
 )
 
 review2 = Review.create(
-    comment: "Classic Xbox Exclusive game with a long series of games"
-    user_id: user1.id
-    game_id: Halo.id
-
-    )
+    comment: "Classic Xbox Exclusive game with a long series of games",
+    user_id: user1.username,
+    game_id: Halo.title
+)
 
 review3 = Review.create(
-    comment: "One of my favorite Playstation games very happy with the new game"
-    user_id: user1.id
-    game_id: Gow.id
+    comment: "One of my favorite Playstation games very happy with the new game",
+    user_id: user1.username,
+    game_id: Gow.title
 )
 
 review4 = Review.create(
-    comment: "Always a game you could pick up and play have something new to do giant world to explore"
-    user_id: user1.id
-    game_id: LostArk.id
+    comment: "Always a game you could pick up and play have something new to do giant world to explore",
+    user_id: user1.username,
+    game_id: LostArk.title
 )
 
 review5 = Review.create(
-    comment: "Has a great multiplayer and Campaign story to the game"
-    user_id: user1.id
-    game_id: Gears5.id
+    comment: "Has a great multiplayer and Campaign story to the game",
+    user_id: user1.username,
+    game_id: Gears5.title
 )
 
 review6 = Review.create(
-    comment: "Comabt in the game is unique and fun to play"
-    user_id: user1.id
-    game_id: Horizon.id
+    comment: "Comabt in the game is unique and fun to play",
+    user_id: user1.username,
+    game_id: Horizon.title
 )
 
 
