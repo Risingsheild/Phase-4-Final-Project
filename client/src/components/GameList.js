@@ -11,6 +11,7 @@ function GameList({games}) {
                 key={eachGame.id}
                 game={eachGame}
                 title={eachGame.title}
+                genre={eachGame.genre}
                 />
             ))}
         </div>

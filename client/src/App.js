@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {Route, Routes} from "react-router-dom"
 import Login from "./components/Login";
 import SignUp from "./components/Signup"
-import ReviewForm from "./components/ReviewForm"
 import GameList from "./components/GameList";
 import GameForm from "./components/GameForm";
 import PCgames from "./components/PCgames";
@@ -38,6 +37,7 @@ useEffect(() => {
   fetch('/reviews')
   .then((r) => r.json())
   .then(data => setReviews(data))
+  console.log(reviews);
 },[])
 
 function onAddGame(newGame){
