@@ -4,7 +4,6 @@ import Login from "./components/Login";
 import SignUp from "./components/Signup"
 import GameList from "./components/GameList";
 import GameForm from "./components/GameForm";
-import PCgames from "./components/PCgames";
 import "./components/style.css"
 import ReviewList from "./components/ReviewList";
 
@@ -53,7 +52,6 @@ function onAddGame(newGame){
         <Route path='/games' exact element={<GameList games={games}/>}/>
         <Route path='/reviews' exact element={<ReviewList/>}/>
         <Route path='/addgames' exact element={<GameForm onAddGame={onAddGame}/>}/>
-        <Route path='/pc/games' exact element={<PCgames games={games}/>}/>
       </Routes>
     </div>
   );

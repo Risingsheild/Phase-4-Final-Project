@@ -19,6 +19,7 @@ function ReviewList() {
 
 return (
   <div className="PlatformList">
+    <ReviewForm />
       {reviewData.map(
           
         (eachReview) => {
@@ -27,7 +28,6 @@ return (
 
 
       })}
-      <ReviewForm />
     </div>
     )
 }
