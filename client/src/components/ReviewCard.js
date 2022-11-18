@@ -1,9 +1,9 @@
 function ReviewCard({ reviewInfo }) {
- 
-    function handleDelete() {
-    fetch(`/reviews/${reviewInfo.id}`, {
+  function handleDelete(r) {
+    fetch(`/reviews/${r.id}`, {
       method: "DELETE",
-    }).then((r) => r.json());
+      headers: { "Content-Type": "Application/json" },
+    })
   }
 
   return (

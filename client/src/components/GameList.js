@@ -12,6 +12,7 @@ function GameList({games}) {
                 game={eachGame}
                 title={eachGame.title}
                 genre={eachGame.genre}
+                reviews={eachGame.reviews}
                 />
             ))}
         </div>

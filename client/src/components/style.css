@@ -10,3 +10,19 @@
     height: 30px;
     vertical-align: middle;
   }
+
+  .image {
+    max-width: 20vw;
+    max-height: 25vh;
+    object-fit: cover;
+    
+  }
+  .Card {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 350px;
+    max-height: fit-content;
+    margin: 30px;
+}

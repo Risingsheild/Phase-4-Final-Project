@@ -1,18 +1,15 @@
 import React from "react";
-import ReviewCard from "./ReviewCard";
 import { useNavigate } from "react-router";
 
 function GameCard({ game }) {
   const navigate = useNavigate();
   return (
-    <div className="Card">
-      <h1 className="gameHeader">{game.title}</h1>
+    <div className="Card" sx={{ maxWidth: 345, border :1 }}>
+      <h1 className="gameHeader">
+        {game.title} <br></br> Genre: {game.genre}{" "}
+      </h1>
       <img className="image" src={game.image_url} alt={game.title} />
-      <h2>{game.genre}</h2>
-      <h3>
-    
-        <ReviewCard />
-      </h3>
+      <p>{game.reviews.map((element) => element.comment)}</p>
       <button onClick={() => navigate(`/reviews`)}>
         Click here to leave a Review
       </button>

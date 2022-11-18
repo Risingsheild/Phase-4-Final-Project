@@ -4,8 +4,8 @@ import {useNavigate} from "react-router-dom"
 function ReviewForm(){
     const[reviewData, setReviewData] = useState({
         comment: "Add Comment",
-        user_id: "Add user_id",
-        game_id: "Add game_id"
+        user_id: "Add Your Username",
+        game_id: "Add Game Title"
     })
 
     const navigate = useNavigate()

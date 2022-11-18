@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GameForm({ onAddGame }) {
   const defaultImage =
@@ -7,6 +8,7 @@ function GameForm({ onAddGame }) {
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState(defaultImage);
   const [platform, setPlatform] = useState("");
+  const navigate = useNavigate()
 
   function handleChangeTitle(e) {
     setTitle(e.target.value);
@@ -43,10 +45,7 @@ function GameForm({ onAddGame }) {
       .then((r) => r.json())
       .then((data) => {
         onAddGame(data);
-        setTitle("");
-        setGenre("");
-        setImage(defaultImage);
-        setPlatform("");
+        navigate('/games')
       });
   }
 
@@ -75,7 +74,8 @@ function GameForm({ onAddGame }) {
           type="text"
           id="image_url"
           onChange={handleChangeImage}
-          value="image_url"
+          value={image}
+          placeholder="https://image.freepik.com/free-vector/online-videogame-neon-icon_1262-15918.jpg"
         />
 
         <label> Platform </label>
@@ -85,6 +85,7 @@ function GameForm({ onAddGame }) {
           <option value="xbox"> Xbox </option>
           <option value="playstation"> Playstation </option>
         </select>
+        <button type="submit"> Add Game</button>
       </form>
     </div>
   );
