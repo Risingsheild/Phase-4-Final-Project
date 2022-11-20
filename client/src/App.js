@@ -45,7 +45,7 @@ function onAddGame(newGame){
 
   return (
     <div className="App">
-      <h1>Please leave a Review</h1>
+      <h1>Game DataBase</h1>
       <Routes>
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>

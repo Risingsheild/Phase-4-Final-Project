@@ -12,17 +12,38 @@
   }
 
   .image {
-    max-width: 20vw;
-    max-height: 25vh;
-    object-fit: cover;
-    
-  }
-  .Card {
     position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 350px;
-    max-height: fit-content;
-    margin: 30px;
-}
+    max-width: 50vw;
+    max-height: 50vh;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .Card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .Container {
+    padding: 2px 16px;
+    position: center;
+
+  }
+  input {
+    width: 100%;
+  }
+  input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  input[type=text] {
+    background-color: #fdf7f2;
+    color: rgb(9, 9, 9);
+  }
+
+ 

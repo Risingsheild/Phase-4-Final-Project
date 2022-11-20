@@ -8,7 +8,7 @@ function ReviewCard({ reviewInfo }) {
 
   return (
     <div className="GameCard">
-      <p>{reviewInfo.game_id}</p>
+      <p>{reviewInfo.game.map(ele => ele.title)}</p>
       <p>{reviewInfo.comment}</p>
 
       <button type="submit" onClick={handleDelete}>

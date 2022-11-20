@@ -22,7 +22,10 @@ function ReviewList() {
 return (
   <div className="PlatformList">
     <NavBar />
+    <br></br>
     <ReviewForm />
+    <br></br>
+     
       {reviewData.map(
           
         (eachReview) => {

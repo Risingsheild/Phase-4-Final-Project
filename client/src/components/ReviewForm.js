@@ -3,9 +3,9 @@ import {useNavigate} from "react-router-dom"
 
 function ReviewForm(){
     const[reviewData, setReviewData] = useState({
-        comment: "Add Comment",
-        user_id: "Add Your Username",
-        game_id: "Add Game Title"
+        comment: "",
+        user_id: "",
+        game_id: ""
     })
 
     const navigate = useNavigate()
@@ -35,18 +35,21 @@ function ReviewForm(){
             <input
                 type="text"
                 id="comment"
+                placeholder="Add Review"
                 value={reviewData.comment}
                 onChange={handleChange}
             />
             <input
                 type="text" 
                 id="user_id"
+                placeholder="Your User ID"
                 value={reviewData.user_id}
                 onChange={handleChange}
             />
             <input
                 type="text"
                 id="game_id"
+                placeholder="What Game"
                 value={reviewData.game_id}
                 onChange={handleChange}
             /> 
