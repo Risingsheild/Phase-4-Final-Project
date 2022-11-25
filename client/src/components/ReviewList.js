@@ -10,6 +10,11 @@ function ReviewList() {
     console.log(reviewData)
 
  
+    function handleDelete(id) {
+      const newReviewList = reviewData.filter((review) => review.id !== id)
+      setReviewData(newReviewList)
+    }
+
     useEffect(() => {
         fetch('/reviews')
         .then((r) => r.json())
@@ -30,7 +35,7 @@ return (
           
         (eachReview) => {
 
-            return (<ReviewCard key={eachReview.id} reviewInfo={eachReview}/>)
+            return (<ReviewCard key={eachReview.id} reviewInfo={eachReview} onDeleteReview={handleDelete}/>)
 
 
       })}

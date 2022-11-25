@@ -117,7 +117,7 @@ review5 = Review.create(
 )
 
 review6 = Review.create(
-    comment: "Comabt in the game is unique and fun to play",
+    comment: "Combat in the game is unique and fun to play",
     user_id: user1.id,
     game_id: Horizon.id
 )

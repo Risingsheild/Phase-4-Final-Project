@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 
 function GameForm({ onAddGame }) {
   const defaultImage =
-    "https://image.freepik.com/free-vector/online-videogame-neon-icon_1262-15918.jpg";
+    "https://www.pixelstalk.net/wp-content/uploads/2016/05/Gaming-Logo-Wallpapers-Free-Download.jpg";
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState(defaultImage);
@@ -31,11 +31,11 @@ function GameForm({ onAddGame }) {
     const gameItem = {
       title: title,
       genre: genre,
-      image: image,
-      platform: platform,
+      image_url: image,
+      platform_id: platform,
     };
 
-    fetch("/games", {
+    fetch(`/games/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function GameForm({ onAddGame }) {
             id="image_url"
             onChange={handleChangeImage}
             value={image}
-            placeholder="https://image.freepik.com/free-vector/online-videogame-neon-icon_1262-15918.jpg"
+            placeholder="https://www.pixelstalk.net/wp-content/uploads/2016/05/Gaming-Logo-Wallpapers-Free-Download.jpg"
           />
 
           <label> Platform </label>

@@ -1,14 +1,24 @@
-function ReviewCard({ reviewInfo }) {
-  function handleDelete(r) {
-    fetch(`/reviews/${r.id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "Application/json" },
+import { useNavigate } from "react-router-dom";
+
+function ReviewCard({ reviewInfo, onDeleteReview }) {
+  
+  const navigate = useNavigate()
+  
+  function handleDelete() {
+    fetch(`/reviews/${reviewInfo.id}`, {
+      method: "DELETE"
     })
-  }
+    .then((r) => r.json())
+    .then(() => {
+      onDeleteReview(reviewInfo.id)
+      navigate("/games");
+  })
+}
 
   return (
-    <div className="GameCard">
-      <p>{reviewInfo.game.map(ele => ele.title)}</p>
+    <div className="Card">
+      <h2>Game Title:<p>{reviewInfo.game.title}</p></h2>
+      
       <p>{reviewInfo.comment}</p>
 
       <button type="submit" onClick={handleDelete}>
