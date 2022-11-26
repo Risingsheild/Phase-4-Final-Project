@@ -5,6 +5,7 @@ import {Button, Container, FormControl, Grid, TextField, Typography } from '@mui
 function Login({setUser}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [errors, setErrors] = useState ([])
     
     const navigate = useNavigate()
 
@@ -21,15 +22,20 @@ function Login({setUser}) {
             },
             body: JSON.stringify(userObj),
         })
-        .then((r) => r.json())
-        .then((user) => {
-            setUser(user)
-            navigate('/games')
-        })
+        .then( res => {
+            if(res.ok){
+              res.json().then(setUser)
+              navigate('/games')
+            }
+            else{
+              res.json().then( e => setErrors(Object.entries(e.error).flat()))
+            }
+          })
     }
 
     return (
         <Container maxWidth="false">
+            {errors?errors.map(e=> <h3>{e}</h3>):null}
         <Grid container>
             <Grid item xs={12} align="center" justify="center">
                 <FormControl sx={{ m: 2 }}>
@@ -77,6 +83,7 @@ function Login({setUser}) {
                 </Button>
             </Grid>
         </Grid>
+        
     </Container>
   )
 }

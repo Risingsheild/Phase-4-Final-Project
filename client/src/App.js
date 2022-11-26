@@ -6,6 +6,8 @@ import GameList from "./components/GameList";
 import GameForm from "./components/GameForm";
 import "./components/style.css"
 import ReviewList from "./components/ReviewList";
+import Platforms from "./components/Platforms";
+import Logout from "./components/Logout";
 
 
 
@@ -45,13 +47,15 @@ function onAddGame(newGame){
 
   return (
     <div className="App">
-      <h1>Game DataBase</h1>
+      <h1>Hello {user.id}.) {user.username}</h1>
       <Routes>
+        <Route path="/logout" exact element={<Logout setUser={setUser}/>} />
         <Route path='/' exact element={<Login setUser={setUser}/>}> </Route>
         <Route path='/signup' exact element={<SignUp setUser={setUser}/>}/>
         <Route path='/games' exact element={<GameList games={games}/>}/>
         <Route path='/reviews' exact element={<ReviewList/>}/>
         <Route path='/addgames' exact element={<GameForm onAddGame={onAddGame}/>}/>
+        <Route path='/platforms' exact element={<Platforms/>}/>
       </Routes>
     </div>
   );

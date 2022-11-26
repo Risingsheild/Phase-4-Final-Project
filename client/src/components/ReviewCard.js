@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 
 function ReviewCard({ reviewInfo, onDeleteReview }) {
   
-  const navigate = useNavigate()
   
   function handleDelete() {
     fetch(`/reviews/${reviewInfo.id}`, {
@@ -11,15 +9,16 @@ function ReviewCard({ reviewInfo, onDeleteReview }) {
     .then((r) => r.json())
     .then(() => {
       onDeleteReview(reviewInfo.id)
-      navigate("/games");
+      window.location.reload()
   })
 }
 
   return (
     <div className="Card">
-      <h2>Game Title:<p>{reviewInfo.game.title}</p></h2>
+      <h2>Review for: {reviewInfo.game.id}.) {reviewInfo.game.title} </h2>
       
-      <p>{reviewInfo.comment}</p>
+      <h4>{reviewInfo.comment}</h4>
+      <p>Review left by user: {reviewInfo.user.id}.) {reviewInfo.user.username}</p> 
 
       <button type="submit" onClick={handleDelete}>
         Delete Comment

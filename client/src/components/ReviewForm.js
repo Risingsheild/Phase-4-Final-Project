@@ -1,5 +1,4 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
 
 function ReviewForm(){
     const[reviewData, setReviewData] = useState({
@@ -8,7 +7,6 @@ function ReviewForm(){
         game_id: ""
     })
 
-    const navigate = useNavigate()
 
     function handleChange(e){
         setReviewData({
@@ -27,7 +25,7 @@ function ReviewForm(){
             body: JSON.stringify(reviewData),
         })
         .then((r) => r.json())
-        .then(navigate('/games'))
+        window.location.reload()
     }
 
     return(
@@ -49,7 +47,7 @@ function ReviewForm(){
             <input
                 type="text"
                 id="game_id"
-                placeholder="What Game"
+                placeholder="What Game Number"
                 value={reviewData.game_id}
                 onChange={handleChange}
             /> 

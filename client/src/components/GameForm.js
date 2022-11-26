@@ -35,7 +35,7 @@ function GameForm({ onAddGame }) {
       platform_id: platform,
     };
 
-    fetch(`/games/`, {
+    fetch(`/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

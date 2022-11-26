@@ -6,10 +6,10 @@ function GameCard({ game }) {
   return (
     <div className="Card">
       <h1 className="gameHeader">
-        {game.title} <br></br> Genre: {game.genre}{" "}
+      {game.id}: {game.title} <br></br> Genre: {game.genre}{" "}
       </h1>
       <img className="image" src={game.image_url} alt={game.title} />
-      <p className="Container">{game.reviews.map((element) => element.comment)}</p>
+      <li className="Container">{game.reviews.map((element) => element.comment)}</li>
       <button onClick={() => navigate(`/reviews`)}>
         Click here to leave a Review
       </button>
