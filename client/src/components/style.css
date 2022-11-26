@@ -46,4 +46,16 @@
     color: rgb(9, 9, 9);
   }
 
+  .logout-button {
+    align-self: center;
+    color: rgb(250, 0, 0);
+    border: 1;
+    padding: 10px 15px;
+  }
+
+  .logout-button:hover{
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+  }
+  
+
  

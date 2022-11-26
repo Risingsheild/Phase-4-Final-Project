@@ -1,20 +1,21 @@
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-function Logout(setUser){
+function Logout({ setUser }) {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-
-function handleLogout() {
+  function handleLogout() {
     fetch("/logout", {
-        method: 'DELETE',
-    }).then(setUser(''))
-    .then(navigate("/login"))
-}
-return(
+      method: "DELETE",
+    })
+      .then(navigate("/"))
+      .then(setUser(null));
+  }
+  return (
     <div>
-        <button  onSubmit={handleLogout}> Logout </button>
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
-)
+  );
 }
-export default Logout
+export default Logout;
