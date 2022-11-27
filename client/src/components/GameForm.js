@@ -88,9 +88,9 @@ function GameForm({ onAddGame }) {
             value={platform}
           >
             <option value=""> Select </option>
-            <option value="pc.id"> PC </option>
-            <option value="xbox.id"> Xbox </option>
-            <option value="playstation.id"> Playstation </option>
+            <option value="1"> PC </option>
+            <option value="2"> Xbox </option>
+            <option value="3"> Playstation </option>
           </select>
           <button type="submit"> Add Game</button>
         </form>
