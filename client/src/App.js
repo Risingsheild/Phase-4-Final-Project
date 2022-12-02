@@ -19,7 +19,7 @@ function App() {
     fetch("/games")
       .then((r) => r.json())
       .then((data) => setGames(data));
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     fetch("/reviews")
