@@ -4,21 +4,7 @@ import NavBar from "./NavBar";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 
-function ReviewList() {
-  const [reviewData, setReviewData] = useState([]);
-  console.log(reviewData);
-
-  function handleDelete(id) {
-    const newReviewList = reviewData.filter((review) => review.id !== id);
-    setReviewData(newReviewList);
-  }
-
-  useEffect(() => {
-    fetch("/reviews")
-      .then((r) => r.json())
-      .then((data) => setReviewData(data));
-  }, []);
-
+function ReviewList({reviews, onDeleteReview}) {
   return (
     <div className="PlatformList">
       <Logout />
@@ -27,12 +13,12 @@ function ReviewList() {
       <ReviewForm />
       <br></br>
 
-      {reviewData.map((eachReview) => {
+      {reviews.map((eachReview) => {
         return (
           <ReviewCard
             key={eachReview.id}
             reviewInfo={eachReview}
-            onDeleteReview={handleDelete}
+            onDeleteReview={onDeleteReview}
           />
         );
       })}

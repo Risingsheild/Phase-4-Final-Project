@@ -23,7 +23,6 @@ function ReviewForm() {
       },
       body: JSON.stringify(reviewData),
     }).then((r) => r.json());
-    window.location.reload();
   }
 
   return (

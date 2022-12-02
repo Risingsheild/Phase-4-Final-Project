@@ -1,13 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 function ReviewCard({ reviewInfo, onDeleteReview }) {
+  const navigate = useNavigate()
+ 
   function handleDelete() {
     fetch(`/reviews/${reviewInfo.id}`, {
-      method: "DELETE",
+      method: "Delete"
     })
       .then((r) => r.json())
-      .then(() => {
-        onDeleteReview(reviewInfo.id);
-        window.location.reload();
-      });
+      .then(() => onDeleteReview(reviewInfo.id))  
   }
 
   return (
@@ -21,9 +22,10 @@ function ReviewCard({ reviewInfo, onDeleteReview }) {
         Review left by user: {reviewInfo.user.id}.) {reviewInfo.user.username}
       </p>
 
-      <button type="submit" onClick={handleDelete}>
+      <button onClick={handleDelete}>
         Delete Comment
       </button>
+      <button onClick={() => navigate(`/reviews/${reviewInfo.id}`)}> Update Review </button>
     </div>
   );
 }
