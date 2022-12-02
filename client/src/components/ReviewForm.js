@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function ReviewForm() {
+function ReviewForm({ onAddReview }) {
   const [reviewData, setReviewData] = useState({
     comment: "",
     user_id: "",
     game_id: "",
   });
+
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setReviewData({
@@ -22,7 +25,12 @@ function ReviewForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(reviewData),
-    }).then((r) => r.json());
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        onAddReview(data);
+        
+      });
   }
 
   return (

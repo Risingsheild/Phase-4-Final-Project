@@ -31,29 +31,53 @@ function App() {
   function onAddGame(newGame) {
     setGames([...games, newGame]);
   }
-  
+
+  function onAddReview(newReview) {
+    setReviews([...reviews, newReview]);
+  }
+
   function handleDelete(id) {
     const newReviewList = reviews.filter((review) => review.id !== id);
     setReviews(newReviewList);
   }
 
-  function handleUpdate(currentReview){
-    const newReview = reviews.map((review) =>
-    review.id === currentReview.id ? currentReview : review)
-    setReviews(newReview)
+  function handleUpdate(currentReview) {
+    const UpdatedReview = reviews.map((review) =>
+      review.id === currentReview.id ? currentReview : review
+    );
+    setReviews(UpdatedReview);
   }
-
 
   return (
     <div className="App">
       <Routes>
         <Route path="/logout" exact element={<Logout setUser={setUser} />} />
-        <Route path="/" exact element={<Login setUser={setUser} />}/>
+        <Route path="/" exact element={<Login setUser={setUser} />} />
         <Route path="/signup" exact element={<SignUp setUser={setUser} />} />
         <Route path="/games" exact element={<GameList games={games} />} />
-        <Route path="/reviews" exact element={<ReviewList reviews={reviews} onDeleteReview={handleDelete}/>} />
-        <Route path="/addgames" exact element={<GameForm onAddGame={onAddGame} />} />
-        <Route path="/reviews/:id" exact element={<EditReview reviews={reviews} onUpdateReview={handleUpdate}/>}/>
+        <Route
+          path="/reviews"
+          exact
+          element={
+            <ReviewList
+              reviews={reviews}
+              onDeleteReview={handleDelete}
+              onAddReview={onAddReview}
+            />
+          }
+        />
+        <Route
+          path="/addgames"
+          exact
+          element={<GameForm onAddGame={onAddGame} />}
+        />
+        <Route
+          path="/reviews/:id"
+          exact
+          element={
+            <EditReview reviews={reviews} onUpdateReview={handleUpdate} />
+          }
+        />
         <Route path="/platforms" exact element={<Platforms />} />
       </Routes>
     </div>
