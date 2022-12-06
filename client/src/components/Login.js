@@ -1,19 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Container, FormControl, Grid, TextField, Typography} from "@mui/material";
 
-function Login({ setUser }) {
+function Login({setUser}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -28,12 +20,14 @@ function Login({ setUser }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userObj),
-    }).then((res) => {
-      if (res.ok) {
-        res.json().then(setUser);
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json()
+       .then(setUser);
         navigate("/games");
       } else {
-        res.json().then((e) => setErrors(Object.entries(e.error).flat()));
+        r.json().then((e) => setErrors(Object.entries(e.error).flat()));
       }
     });
   }

@@ -3,7 +3,8 @@ import NavBar from "./NavBar";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 
-function ReviewList({ reviews, onDeleteReview, onAddReview }) {
+function ReviewList({reviews, onDeleteReview, onAddReview }) {
+
   return (
     <div className="PlatformList">
       <Logout />
