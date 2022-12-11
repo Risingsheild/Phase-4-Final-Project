@@ -58,8 +58,6 @@
   }
 
   .App{
-    background-color:  rgba(201, 201, 201, 0.64);
+    background-image: url('https://99effect.com/wp-content/uploads/2021/03/3-scaled.jpg');
+    background-size: contain;
   }
-  
-
- 

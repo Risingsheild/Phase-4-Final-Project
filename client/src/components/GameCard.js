@@ -10,7 +10,7 @@ function GameCard({ game }) {
         {game.genre}
       </h1>
       <img className="image" src={game.image_url} alt={game.title} />
-      <li className="Container">
+      <li className="Container" style={{ fontWeight: "bold" }}>
         {game.reviews.map((element) => element.comment)}
       </li>
       <br></br>

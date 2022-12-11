@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, Container, FormControl, Grid, TextField, Typography} from "@mui/material";
 
-function Login({setUser}) {
+function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -20,11 +20,9 @@ function Login({setUser}) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userObj),
-    })
-    .then((r) => {
+    }).then((r) => {
       if (r.ok) {
-        r.json()
-       .then(setUser);
+        r.json().then(setUser);
         navigate("/games");
       } else {
         r.json().then((e) => setErrors(Object.entries(e.error).flat()));
@@ -33,12 +31,21 @@ function Login({setUser}) {
   }
 
   return (
-    <Container maxWidth="false">
-      {errors ? errors.map((e) => <h3>{e}</h3>) : null}
+    <Container maxWidth="false" style={{ background: "white" }}>
+      {errors
+        ? errors.map((e) => (
+            <h3 style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
+          ))
+        : null}
       <Grid container>
         <Grid item xs={12} align="center" justify="center">
           <FormControl sx={{ m: 2 }}>
-            <Typography justifySelf={"center"}>Login</Typography>
+            <Typography
+              justifySelf={"center"}
+              style={{ fontSize: "2rem", fontWeight: "bold" }}
+            >
+              Login
+            </Typography>
             <TextField
               sx={{ m: 2 }}
               required

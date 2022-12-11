@@ -56,7 +56,9 @@ function GameForm({ onAddGame }) {
       <div className="GameForm">
         <form className="form" onSubmit={handleSubmit}>
           <h2>Add a New Game</h2>
-          <label>Title</label>
+          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            Title
+          </label>
           <input
             type="text"
             id="title"
@@ -64,7 +66,9 @@ function GameForm({ onAddGame }) {
             value={title}
           />
 
-          <label>Genre</label>
+          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            Genre
+          </label>
           <input
             type="text"
             id="genre"
@@ -72,7 +76,9 @@ function GameForm({ onAddGame }) {
             value={genre}
           />
 
-          <label>Image</label>
+          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            Image
+          </label>
           <input
             type="text"
             id="image_url"
@@ -81,7 +87,10 @@ function GameForm({ onAddGame }) {
             placeholder="https://www.pixelstalk.net/wp-content/uploads/2016/05/Gaming-Logo-Wallpapers-Free-Download.jpg"
           />
 
-          <label> Platform </label>
+          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+            {" "}
+            Platform{" "}
+          </label>
           <select
             id="platform_id"
             onChange={handleChangePlatform}

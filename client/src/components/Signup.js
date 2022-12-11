@@ -36,7 +36,7 @@ function SignUp({ setUser }) {
   }
 
   return (
-    <Container maxWidth="false">
+    <Container maxWidth="false" style={{ background: "white" }}>
       <Grid container>
         <Grid item xs={12} align="center" justify="center">
           <FormControl sx={{ m: 2 }}>
