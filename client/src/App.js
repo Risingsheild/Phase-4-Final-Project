@@ -55,7 +55,7 @@ function App() {
         <Route path="/logout" exact element={<Logout setUser={setUser} />} />
         <Route path="/" exact element={<Login setUser={setUser} />}/>
         <Route path="/signup" exact element={<SignUp setUser={setUser} />} />
-        <Route path="/games" exact element={<GameList setUser={setUser} games={games} />} />
+        <Route path="/games" exact element={<GameList setUser={setUser} games={games} reviews={reviews} />} />
         <Route path="/reviews" exact element={<ReviewList setUser={setUser} reviews={reviews} onDeleteReview={handleDelete} onAddReview={onAddReview}/>} />
         <Route path="/addgames" exact element={<GameForm onAddGame={onAddGame} />} />
         <Route path="/reviews/:id" exact element={<EditReview reviews={reviews} onUpdateReview={handleUpdate}/>}/>

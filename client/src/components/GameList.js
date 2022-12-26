@@ -3,7 +3,7 @@ import Logout from "./Logout";
 import NavBar from "./NavBar";
 import { useEffect, useState } from "react";
 
-function GameList({ games }) {
+function GameList({ games, reviews }) {
   const [user, setUser] = useState("");
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -25,7 +25,7 @@ function GameList({ games }) {
           game={eachGame}
           title={eachGame.title}
           genre={eachGame.genre}
-          reviews={eachGame.reviews}
+          reviews={reviews}
         />
       ))}
     </div>
