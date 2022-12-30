@@ -18,6 +18,7 @@ puts "Seeding Data"
 puts "Seeding Users"
 
 user1 = User.create(username: "Nick Wells", password: "123")
+user2 = User.create(username: "Katie", password: "111")
 
 #-----PLATFORMS-----
 puts "Seeding Platforms"
@@ -94,7 +95,7 @@ review1 = Review.create(
 
 review2 = Review.create(
     comment: "Classic Xbox Exclusive game with a long series of games",
-    user_id: user1.id,
+    user_id: user2.id,
     game_id: Halo.id
 )
 
@@ -106,7 +107,7 @@ review3 = Review.create(
 
 review4 = Review.create(
     comment: "Always a game you could pick up and play have something new to do giant world to explore",
-    user_id: user1.id,
+    user_id: user2.id,
     game_id: LostArk.id
 )
 
