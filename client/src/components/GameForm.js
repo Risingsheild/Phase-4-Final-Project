@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
 function GameForm({ onAddGame }) {
@@ -9,7 +8,8 @@ function GameForm({ onAddGame }) {
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState(defaultImage);
   const [platform, setPlatform] = useState("");
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
+
 
   function handleChangeTitle(e) {
     setTitle(e.target.value);
@@ -43,15 +43,27 @@ function GameForm({ onAddGame }) {
       },
       body: JSON.stringify(gameItem),
     })
-      .then((r) => r.json())
-      .then((data) => {
-        onAddGame(data);
-        navigate("/games");
-      });
-  }
+      .then((r) => {
+        setGenre("")
+        setPlatform("")
+        setTitle("")
+        setImage(defaultImage)
+        if (r.ok) {
+          r.json().then((data) => onAddGame(data))
+        } else {
+          r.json().then((e) => setErrors(e.errors)); 
+          }
+        })
+      }
+  
 
   return (
     <div>
+      {errors
+        ? errors.map((e) => (
+            <h3 style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
+          ))
+        : null}
       <NavBar />
       <div className="GameForm">
         <form className="form" onSubmit={handleSubmit}>

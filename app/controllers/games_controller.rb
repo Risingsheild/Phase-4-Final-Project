@@ -10,13 +10,17 @@ class GamesController < ApplicationController
     end
 
     def create
-        game = Game.create(
+        game = Game.create!(
             title: params[:title],
             genre: params[:genre],
             image_url: params[:image_url],
             platform_id: params[:platform_id]
         )
-        render json: game, status: :created
+        if game
+            render json: game, status: :created
+        else 
+            render json: { error: "Please fill out all information"}, status: :length_required
+        end
     end
     
 end

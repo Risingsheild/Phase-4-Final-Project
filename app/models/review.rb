@@ -5,4 +5,5 @@ class Review < ApplicationRecord
     validates :comment, presence: true
     validates :comment, length: { maximum: 200, too_long: "%{count} characters is the maximum allowed"}
 
+
 end

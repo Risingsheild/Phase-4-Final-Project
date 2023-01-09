@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
   get '/me', to: 'users#show'
-  get '/signup', to: 'users#create'
+
+  #get '/first/:word', to: 'reviews#firstReview'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

@@ -3,6 +3,7 @@ import { useState } from "react";
 function ReviewForm({ onAddReview, user }) {
   const [comment, setComment] = useState("");
   const [game_id, setGame_id] = useState("");
+  const [errors, setErrors] = useState([]);
 
   let id = user.id;
 
@@ -28,15 +29,25 @@ function ReviewForm({ onAddReview, user }) {
       },
       body: JSON.stringify(reviewData),
     })
-      .then((r) => r.json())
-      .then((data) => {
-        onAddReview(data);
-      });
-  }
+      .then((r) => {
+        setComment("")
+        setGame_id("")
+        if (r.ok) {
+          r.json().then((data) => onAddReview(data))
+        } else {
+          r.json().then((e) => setErrors(e.error))
+        }
+      }) 
+    }
 
   return (
     <div>
-      <h2>Hello {user.username}</h2>
+     {errors
+        ? errors.map((e) => (
+            <h1 style={{ color: "red", fontWeight: "bold" }}>{e}</h1>
+          ))
+        : null}
+      <h2>Hello {user.username}</h2> 
       <form onSubmit={handleSubmit} className="GameForm">
         <input
           type="text"
