@@ -1,25 +1,14 @@
 class ReviewsController < ApplicationController
 
-
-    
     def index 
-        render json: Review.all
+        Review.all
     end
-
-    def show 
-        review = Review.find_by(id: params[:id])
-        render json: review
-    end
-
-
+    
     ## Create Method
 
     def create 
-        review = Review.create!(
-            comment: params[:comment], 
-            user_id: params[:user_id], 
-            game_id: params[:game_id]
-        )
+        game = Game.find_by(id: params[:id])
+        review = @current_user.reviews.create!(review_params.merge(game_id: game))
         if review 
             render json: review, status: :created
         else 
@@ -31,9 +20,8 @@ class ReviewsController < ApplicationController
     ## Update Method 
 
     def update 
-        review = Review.find_by(id: params[:id])
-        if review
-            review.update(review_params)
+        if review = current_user.reviews.find(params[:id])
+            review.update!(review_params)
             render json: review 
         else 
             render json: { error: "Review Not Found"}, status: :not_found
@@ -44,19 +32,15 @@ class ReviewsController < ApplicationController
     ## Destroy Method 
 
     def destroy 
-        review = Review.find_by(id: params[:id])
-        if review 
-            review.destroy
-            head :no_content
-        else
-            render json: { error: "Review Not Found"}, status: :not_found
-        end
+        review = current_user.reviews.find(params[:id])
+        review.destroy
+        render json: {message: "Review Deleted"}
     end
 
     private 
 
     def review_params
-        params.permit(:comment)
+        params.require(:comment, :game_id)
     end
 
 end

@@ -11,23 +11,32 @@ import Logout from "./components/Logout";
 import EditReview from "./components/EditReview";
 
 function App() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
   const [reviews, setReviews] = useState([]);
 
+ useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then(() => setUser(user));
+      }
+    });
+  }, []);
+  
   useEffect(() => {
     fetch("/games")
       .then((r) => r.json())
       .then((data) => setGames(data));
   }, []);
 
+ 
 
-  useEffect(() => {
-    fetch("/reviews")
-      .then((r) => r.json())
-      .then((data) => setReviews(data));
-    console.log(reviews);
-  }, []);
+  // useEffect(() => {
+  //   fetch("/reviews")
+  //     .then((r) => r.json())
+  //     .then((data) => setReviews(data));
+  //   console.log(reviews);
+  // }, []);
 
   function onAddGame(newGame) {
     setGames([...games, newGame]);
@@ -55,8 +64,8 @@ function App() {
         <Route path="/logout" exact element={<Logout setUser={setUser} />} />
         <Route path="/" exact element={<Login setUser={setUser} />}/>
         <Route path="/signup" exact element={<SignUp setUser={setUser} />} />
-        <Route path="/games" exact element={<GameList setUser={setUser} games={games} reviews={reviews} />} />
-        <Route path="/reviews" exact element={<ReviewList setUser={setUser} reviews={reviews} onDeleteReview={handleDelete} onAddReview={onAddReview}/>} />
+        <Route path="/games" exact element={<GameList games={games} reviews={reviews} />} />
+        <Route path="/reviews" exact element={<ReviewList reviews={reviews} onDeleteReview={handleDelete} onAddReview={onAddReview}/>} />
         <Route path="/addgames" exact element={<GameForm onAddGame={onAddGame} />} />
         <Route path="/reviews/:id" exact element={<EditReview reviews={reviews} onUpdateReview={handleUpdate}/>}/>
         <Route path="/platforms" exact element={<Platforms />} />

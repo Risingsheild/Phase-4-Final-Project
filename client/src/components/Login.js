@@ -24,6 +24,8 @@ function Login({ setUser }) {
       if (r.ok) {
         r.json().then(setUser);
         navigate("/games");
+        console.log(setUser);
+        
       } else {
         r.json().then((e) => setErrors(Object.entries(e.error).flat()));
       }

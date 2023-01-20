@@ -1,3 +1,6 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :comment, :user, :game
+  attributes :id, :comment
+  
+  belongs_to :user
+  belongs_to :game
 end

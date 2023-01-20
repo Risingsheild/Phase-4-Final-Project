@@ -36,6 +36,7 @@ function ReviewForm({ onAddReview, user }) {
           r.json().then((data) => onAddReview(data))
         } else {
           r.json().then((e) => setErrors(e.error))
+          console.log(errors);;
         }
       }) 
     }
@@ -47,7 +48,6 @@ function ReviewForm({ onAddReview, user }) {
             <h1 style={{ color: "red", fontWeight: "bold" }}>{e}</h1>
           ))
         : null}
-      <h2>Hello {user.username}</h2> 
       <form onSubmit={handleSubmit} className="GameForm">
         <input
           type="text"

@@ -51,7 +51,8 @@ function GameForm({ onAddGame }) {
         if (r.ok) {
           r.json().then((data) => onAddGame(data))
         } else {
-          r.json().then((e) => setErrors(e.errors)); 
+          r.json().then((e) => setErrors(e.errors))
+          console.log(errors); ; 
           }
         })
       }
@@ -61,7 +62,7 @@ function GameForm({ onAddGame }) {
     <div>
       {errors
         ? errors.map((e) => (
-            <h3 style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
+            <h3 key={errors.message}style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
           ))
         : null}
       <NavBar />
