@@ -10,35 +10,36 @@ function Login({ setUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const userObj = {
-      username: username,
-      password: password,
-    };
     fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userObj),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then(setUser);
-        navigate("/games");
-        console.log(setUser);
-        
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+   })
+    .then(res => res.json())
+    .then(user => {
+      if (!user.errors) {
+        login(user)
+        navigate('/')
       } else {
-        r.json().then((e) => setErrors(Object.entries(e.error).flat()));
+        const errorsList = user.errors.map(e => <li>{e}</li>)
+        setErrors(errorsList)
       }
-    });
-  }
+     })
+  
+    }
 
   return (
     <Container maxWidth="false" style={{ background: "white" }}>
-      {errors
-        ? errors.map((e) => (
-            <h3 style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
+      {  errors ?
+         errors.map((e) => (
+            <li key={e} style={{ color: "red", fontWeight: "bold" }}>Error: {e}</li>
           ))
-        : null}
+        : null }
       <Grid container>
         <Grid item xs={12} align="center" justify="center">
           <FormControl sx={{ m: 2 }}>

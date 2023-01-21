@@ -3,12 +3,6 @@ import { useNavigate } from "react-router-dom";
 function ReviewCard({ reviewInfo, onDeleteReview, user }) {
   const navigate = useNavigate();
 
-  function handleDelete() {
-    fetch(`/reviews/${reviewInfo.id}`, {
-      method: "DELETE",
-    }).then(() => onDeleteReview(reviewInfo.id));
-  }
-
   return (
     <div className="Card">
       <h2>
