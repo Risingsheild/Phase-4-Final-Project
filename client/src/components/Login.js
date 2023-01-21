@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Container, FormControl, Grid, TextField, Typography} from "@mui/material";
+import { UserContext } from "./Context/User";
 
-function Login({ setUser }) {
+function Login() {
+  const {login} = useContext(UserContext)
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -24,7 +27,7 @@ function Login({ setUser }) {
     .then(user => {
       if (!user.errors) {
         login(user)
-        navigate('/')
+        navigate('/games')
       } else {
         const errorsList = user.errors.map(e => <li>{e}</li>)
         setErrors(errorsList)
@@ -34,12 +37,9 @@ function Login({ setUser }) {
     }
 
   return (
+    <div>
+      <ul>{errors}</ul> 
     <Container maxWidth="false" style={{ background: "white" }}>
-      {  errors ?
-         errors.map((e) => (
-            <li key={e} style={{ color: "red", fontWeight: "bold" }}>Error: {e}</li>
-          ))
-        : null }
       <Grid container>
         <Grid item xs={12} align="center" justify="center">
           <FormControl sx={{ m: 2 }}>
@@ -87,6 +87,7 @@ function Login({ setUser }) {
         </Grid>
       </Grid>
     </Container>
+    </div>
   );
 }
 

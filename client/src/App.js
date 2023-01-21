@@ -6,12 +6,14 @@ import GameForm from "./components/GameForm";
 import ReviewList from "./components/ReviewList";
 import Platforms from "./components/Platforms";
 import EditReview from "./components/EditReview";
+import NavBar from "./components/NavBar";
 
 import './components/style.css'
 
 function App() {
   return (
     <div className="App">
+        <NavBar/>
       <Routes>
         <Route path="/" exact element={<Login />} />
         <Route path="/signup" exact element={<SignUp />} />

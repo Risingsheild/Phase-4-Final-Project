@@ -1,15 +1,16 @@
-import { useState } from "react";
-import NavBar from "./NavBar";
+import { useState, useContext } from "react";
+import { UserContext } from "./Context/User";
 
-function GameForm({ onAddGame }) {
+function GameForm() {
+  const {addGames} = useContext(UserContext)
+
   const defaultImage =
     "https://www.pixelstalk.net/wp-content/uploads/2016/05/Gaming-Logo-Wallpapers-Free-Download.jpg";
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState(defaultImage);
   const [platform, setPlatform] = useState("");
-  const [errors, setErrors] = useState([]);
-
+  
 
   function handleChangeTitle(e) {
     setTitle(e.target.value);
@@ -28,44 +29,16 @@ function GameForm({ onAddGame }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const gameItem = {
+    addGames({
       title: title,
       genre: genre,
       image_url: image,
       platform_id: platform,
-    };
-
-    fetch(`/games`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(gameItem),
-    })
-      .then((r) => {
-        setGenre("")
-        setPlatform("")
-        setTitle("")
-        setImage(defaultImage)
-        if (r.ok) {
-          r.json().then((data) => onAddGame(data))
-        } else {
-          r.json().then((e) => setErrors(e.errors))
-          console.log(errors); ; 
-          }
-        })
-      }
-  
+    });
+  }
 
   return (
     <div>
-      {errors
-        ? errors.map((e) => (
-            <h3 key={errors.message}style={{ color: "red", fontWeight: "bold" }}>{e}</h3>
-          ))
-        : null}
-      <NavBar />
       <div className="GameForm">
         <form className="form" onSubmit={handleSubmit}>
           <h2>Add a New Game</h2>
@@ -101,8 +74,7 @@ function GameForm({ onAddGame }) {
           />
 
           <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-            {" "}
-            Platform{" "}
+            Platform
           </label>
           <select
             id="platform_id"

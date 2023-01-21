@@ -1,19 +1,18 @@
 import GameCard from "./GameCard";
-import Logout from "./Logout";
-import NavBar from "./NavBar";
+import { useContext } from "react";
+import { UserContext } from "./Context/User";
 
-function GameList({ games, reviews}) {
+function GameList() {
+  const { games } = useContext(UserContext);
+
   return (
     <div className="gamesList">
-      <Logout />
-      <NavBar />
       {games.map((eachGame) => (
         <GameCard
           key={eachGame.id}
           game={eachGame}
           title={eachGame.title}
           genre={eachGame.genre}
-          reviews={reviews}
         />
       ))}
     </div>

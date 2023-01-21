@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "./Context/User";
-import Login from "./Login";
+import { useContext } from "react";
 
 function NavBar() {
+  const navigate = useNavigate()
   const { user, logout, loggedIn } = useContext(UserContext);
 
   function handleLogout() {
@@ -26,7 +27,7 @@ function NavBar() {
       </div>
     );
   } else {
-    <Login />;
+    return null
   }
 }
 

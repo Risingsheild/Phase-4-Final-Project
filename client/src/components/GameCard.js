@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-function GameCard({ game, reviews }) {
+function GameCard({ game }) {
   const navigate = useNavigate();
 
-  let gameReview = game.reviews.map((element) => (
-    <li key={element.id} style={{ fontWeight: "bold" }}> {element.comment}</li>
+  const gameReview = game.reviews.map((element) => (
+    <li key={element.id} style={{ fontWeight: "bold" }}>
+      {element.comment}
+    </li>
   ));
 
   return (
