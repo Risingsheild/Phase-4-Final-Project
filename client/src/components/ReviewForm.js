@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "./Context/User";
 
-function ReviewForm({ onAddReview, user }) {
-  const [comment, setComment] = useState("");
-  const [game_id, setGame_id] = useState("");
-  const [errors, setErrors] = useState([]);
 
-  let id = user.id;
+function ReviewForm({myGames}) {
+ const {addReview} = useContext(UserContext)
+ const [comment, setComment] = useState("")
+ const [game_id, setGame_id] = useState("")
 
   function handleChangeComment(e) {
     setComment(e.target.value);
@@ -29,25 +29,14 @@ function ReviewForm({ onAddReview, user }) {
       },
       body: JSON.stringify(reviewData),
     })
-      .then((r) => {
-        setComment("")
-        setGame_id("")
-        if (r.ok) {
-          r.json().then((data) => onAddReview(data))
-        } else {
-          r.json().then((e) => setErrors(e.error))
-          console.log(errors);;
-        }
-      }) 
-    }
+      .then((r) => r.json())
+      .then(review =>  addReview(review))
+      }
+
+    const renderMyGames = myGames.map(g => <li key={g.id}>{g.title}</li>)
 
   return (
     <div>
-     {errors
-        ? errors.map((e) => (
-            <h1 style={{ color: "red", fontWeight: "bold" }}>{e}</h1>
-          ))
-        : null}
       <form onSubmit={handleSubmit} className="GameForm">
         <input
           type="text"
@@ -63,8 +52,8 @@ function ReviewForm({ onAddReview, user }) {
           value={game_id}
           onChange={handleChangeGame}
         />
-
         <button type="submit">Submit Review</button>
+        <h4>{renderMyGames}</h4>
       </form>
     </div>
   );

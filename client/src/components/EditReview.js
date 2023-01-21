@@ -1,17 +1,11 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useState, useContext} from "react";
+import { UserContext } from "./Context/User";
 
-function EditReview({ onUpdateReview }) {
+function EditReview({id}) {
   const [comment, setComment] = useState("");
+  const [errors, setErrors] = useState([])
 
-  const navigate = useNavigate();
-  const { id } = useParams();
-
-  useEffect(() => {
-    fetch(`/reviews/${id}`)
-      .then((r) => r.json())
-      .then((data) => setComment(data.comment));
-  }, []);
+  const {handleUpdate} = useContext(UserContext)
 
   function handleChange(e) {
     setComment(e.target.value);
@@ -30,10 +24,14 @@ function EditReview({ onUpdateReview }) {
       body: JSON.stringify(reviewData),
     })
       .then((r) => r.json())
-      .then((data) => {
-        onUpdateReview(data);
-        navigate("/reviews");
-      });
+      .then((updatedReview) => {
+        if (!updatedReview.errors) {
+          handleUpdate(updatedReview)
+        } else {
+          const errorsList = updatedReview.errors.map(e => <li>{e}</li>)
+          setErrors(errorsList)
+        }
+     })
   }
 
   return (
@@ -49,6 +47,7 @@ function EditReview({ onUpdateReview }) {
         />
         <button type="submit">Submit Update</button>
       </form>
+      <ul>{errors}</ul>
     </div>
   );
 }

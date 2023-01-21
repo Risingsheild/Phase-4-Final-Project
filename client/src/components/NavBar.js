@@ -1,6 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "./Context/User";
 import { useContext } from "react";
+
 
 function NavBar() {
   const navigate = useNavigate()
@@ -27,7 +28,12 @@ function NavBar() {
       </div>
     );
   } else {
-    return null
+    return (
+      <div>
+        <Link to='/signup'>SignUp Here</Link>
+        <Link to='/'> Login In Here</Link>
+      </div>
+    )
   }
 }
 

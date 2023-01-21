@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Button,
   Container,
@@ -8,10 +8,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { UserContext } from "./Context/User";
 
-function SignUp({ setUser }) {
+function SignUp() {
+  const {signup} = useContext(UserContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([])
 
   const navigate = useNavigate();
 
@@ -21,7 +24,7 @@ function SignUp({ setUser }) {
       username: username,
       password: password,
     };
-    fetch("/users", {
+    fetch("/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,10 +32,15 @@ function SignUp({ setUser }) {
       body: JSON.stringify(userObj),
     })
       .then((r) => r.json())
-      .then((user) => {
-        setUser(user);
-        navigate("/");
-      });
+      .then(user => {
+        if (!user.errors) {
+          signup(user)
+          navigate('/')
+        } else {
+          const errorsList = user.errors.map(e => <li>{e}</li>)
+          setErrors(errorsList)
+        }
+     })
   }
 
   return (
@@ -78,6 +86,7 @@ function SignUp({ setUser }) {
           </Button>
         </Grid>
       </Grid>
+      <ul>{errors}</ul>
     </Container>
   );
 }
