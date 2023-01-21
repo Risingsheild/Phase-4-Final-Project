@@ -1,24 +1,10 @@
-import NavBar from "./NavBar";
 import ReviewCard from "./ReviewCard";
-import ReviewForm from "./ReviewForm";
 
-function ReviewList({ reviews, onDeleteReview, onAddReview, user }) {
-
+function ReviewList({ reviews }) {
   return (
     <div className="PlatformList">
-      <NavBar />
-      <br></br>
-      <ReviewForm onAddReview={onAddReview} user={user} />
-      <br></br>
       {reviews.map((eachReview) => {
-        return (
-          <ReviewCard
-            user={user}
-            key={eachReview.id}
-            reviewInfo={eachReview}
-            onDeleteReview={onDeleteReview}
-          />
-        );
+        return <ReviewCard key={eachReview.id} review={eachReview} />;
       })}
     </div>
   );

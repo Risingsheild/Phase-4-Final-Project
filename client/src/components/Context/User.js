@@ -22,7 +22,7 @@ function UserProvider({ childern }) {
         } else {
           setLoggedIn(true);
           setMyGames(data.unique_games);
-          setReviews(data.stocks);
+          setReviews(data.reviews);
           fetchGames();
         }
       });
