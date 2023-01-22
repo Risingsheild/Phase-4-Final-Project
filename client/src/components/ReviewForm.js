@@ -19,7 +19,6 @@ function ReviewForm({myGames}) {
     e.preventDefault();
     const reviewData = {
       comment: comment,
-      user_id: id,
       game_id: game_id,
     };
     fetch("/reviews", {

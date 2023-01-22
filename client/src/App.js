@@ -8,10 +8,13 @@ import Platforms from "./components/Platforms";
 import EditReview from "./components/EditReview";
 import NavBar from "./components/NavBar";
 
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      <h1>My App</h1>
+      <NavBar />
       <Routes>
         <Route path="/" exact element={<Login />} />
         <Route path="/signup" exact element={<SignUp />} />

@@ -1,7 +1,8 @@
 class ReviewsController < ApplicationController
 
     def index 
-        Review.all
+        reviews = current_user.reviews.all
+        render json: reviews, include: ['game']
     end
     
     ## Create Method
@@ -22,6 +23,7 @@ class ReviewsController < ApplicationController
     def update 
         if review = current_user.reviews.find(params[:id])
             review.update!(review_params)
+            review.reload
             render json: review 
         else 
             render json: { error: "Review Not Found"}, status: :not_found
