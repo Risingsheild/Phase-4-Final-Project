@@ -12,9 +12,9 @@ function UserProvider({ childern }) {
   useEffect(() => {
     fetch("/me")
       .then((res) => res.json())
-      .then((data) => {
+      .then(data => {
         setUser(data);
-        if (data.error) {
+        if (data.errors) {
           setLoggedIn(false);
           setReviews([]);
           setGames([]);
@@ -25,7 +25,7 @@ function UserProvider({ childern }) {
           setReviews(data.reviews);
           fetchGames();
         }
-      });
+      })
   }, []);
 
   function fetchGames() {

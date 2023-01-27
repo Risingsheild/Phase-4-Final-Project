@@ -16,13 +16,13 @@ function App() {
       <h1>My App</h1>
       <NavBar />
       <Routes>
-        <Route path="/" exact element={<Login />} />
-        <Route path="/signup" exact element={<SignUp />} />
-        <Route path="/games" exact element={<GameList />} />
-        <Route path="/reviews" exact element={<ReviewList />} />
-        <Route path="/addgames" exact element={<GameForm />} />
-        <Route path="/reviews/:id" exact element={<EditReview />} />
-        <Route path="/platforms" exact element={<Platforms />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/games"  element={<GameList />} />
+        <Route path="/reviews" element={<ReviewList />} />
+        <Route path="/addgames" element={<GameForm />} />
+        <Route path="/reviews/:id" element={<EditReview />} />
+        <Route path="/platforms" element={<Platforms />} />
       </Routes>
     </div>
   );
