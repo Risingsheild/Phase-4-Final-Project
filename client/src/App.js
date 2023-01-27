@@ -7,6 +7,7 @@ import ReviewList from "./components/ReviewList";
 import Platforms from "./components/Platforms";
 import EditReview from "./components/EditReview";
 import NavBar from "./components/NavBar";
+import Home from "./components/Home";
 
 import "./App.css";
 
@@ -15,8 +16,9 @@ function App() {
     <div className="App">
       <h1>My App</h1>
       <NavBar />
+      <Home />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/games"  element={<GameList />} />
         <Route path="/reviews" element={<ReviewList />} />

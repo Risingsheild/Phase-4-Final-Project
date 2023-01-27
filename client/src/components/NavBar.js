@@ -31,7 +31,7 @@ function NavBar() {
     return (
       <div>
         <Link to='/signup'>SignUp Here</Link>
-        <Link to='/'> Login In Here</Link>
+        <Link to='/login'> Login In Here</Link>
       </div>
     )
   }
