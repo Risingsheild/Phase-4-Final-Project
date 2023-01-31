@@ -17,18 +17,23 @@ function ReviewCard({ review }) {
   }
 
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <div>
-        <button onClick={deleteClick}>Delete</button>
-        <h3>Comment: {review.comment} </h3>
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <div className="Card">
         <br></br>
-        <h4>Game: {review.game.title}</h4>
-        <h5>{review.game.image_url}</h5>
+        <h1>Game: {review.game.title}</h1>
+        <img className="img" src={review.game.image_url} alt={review.game.title}/>
+        <h2>Comment: {review.comment} </h2>
+        <br></br>
         <button onClick={handleFlipped}> Update This Review </button>
+        <br></br> <button onClick={deleteClick}>Delete</button>
       </div>
+      <div className="Card">
+      <img className= "img" src={review.game.image_url} alt={review.game.title}/>
         <EditReview id={id} review={review} />
         <br></br>
         <button onClick={handleFlipped}>Click When Finished Updating</button>
+      </div>
+     
     </ReactCardFlip>
   );
 }

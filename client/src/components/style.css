@@ -71,3 +71,8 @@
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   }
+
+  .img{
+    width: auto;
+   height: 400px;
+  }

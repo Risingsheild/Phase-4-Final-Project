@@ -2,7 +2,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "./Context/User";
 
 
-function ReviewForm({myGames}) {
+function ReviewForm() {
+//  const {myGames} = useContext(UserContext)
  const {addReview} = useContext(UserContext)
  const [comment, setComment] = useState("")
  const [game_id, setGame_id] = useState("")
@@ -32,7 +33,7 @@ function ReviewForm({myGames}) {
       .then(review =>  addReview(review))
       }
 
-    const renderMyGames = myGames.map(g => <li key={g.id}>{g.title}</li>)
+    // const renderMyGames = myGames.map(g => <li key={g.id}>{g.title}</li>)
 
   return (
     <div>
@@ -52,7 +53,7 @@ function ReviewForm({myGames}) {
           onChange={handleChangeGame}
         />
         <button type="submit">Submit Review</button>
-        <h4>{renderMyGames}</h4>
+        {/* <h4>{renderMyGames}</h4> */}
       </form>
     </div>
   );
