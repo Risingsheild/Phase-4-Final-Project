@@ -87,7 +87,7 @@ function SignUp() {
           </Button>
         </Grid>
       </Grid>
-      <ul>{errors}</ul>
+      <ul style={{ fontSize: "1.5rem", fontWeight: "bold", color: "red", background: "white"}}>{errors}</ul>
     </Container>
   );
 }

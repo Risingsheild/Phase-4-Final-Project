@@ -4,8 +4,8 @@ import { useContext } from "react";
 function Home() {
   const { user } = useContext(UserContext);
 
-  if (!user) {
-    return <h1> Please Navigate to the Login or Sign up Page </h1>;
+  if (!user || user.errors ||!user.username) {
+    return <h1 style = {{color: "red", background: "white"}}> Please Navigate to the Login or Sign up Page </h1>;
   } else {
     return (
       <div>
