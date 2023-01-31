@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 
 const UserContext = React.createContext();
 
-function UserProvider({ childern }) {
+function UserProvider({ children }) {
   const [user, setUser] = useState({});
   const [games, setGames] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -92,7 +92,7 @@ function UserProvider({ childern }) {
   }
   return(
     <UserContext.Provider value={{user, games, reviews, loggedIn, myGames, login, logout, signup, addGames, addReview, handleUpdate, handleDelete}}>
-        {childern}
+        {children}
     </UserContext.Provider>
   )
 

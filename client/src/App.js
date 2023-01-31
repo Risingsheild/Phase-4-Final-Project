@@ -9,18 +9,17 @@ import EditReview from "./components/EditReview";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 
-import "./App.css";
+import "./components/style.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>My App</h1>
       <NavBar />
-      <Home />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/games"  element={<GameList />} />
+        <Route path="/games" element={<GameList />} />
         <Route path="/reviews" element={<ReviewList />} />
         <Route path="/addgames" element={<GameForm />} />
         <Route path="/reviews/:id" element={<EditReview />} />

@@ -1,3 +1,4 @@
+
 import { useState, useContext } from "react";
 import { UserContext } from "./Context/User";
 
@@ -42,27 +43,29 @@ function GameForm() {
       <div className="GameForm">
         <form className="form" onSubmit={handleSubmit}>
           <h2>Add a New Game</h2>
-          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          <label style={{ fontSize: "2rem", fontWeight: "bold", color: "green" }}>
             Title
           </label>
           <input
             type="text"
             id="title"
+            placeholder="Game Title"
             onChange={handleChangeTitle}
             value={title}
           />
 
-          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          <label style={{ fontSize: "2rem", fontWeight: "bold", color: "purple" }}>
             Genre
           </label>
           <input
             type="text"
             id="genre"
+            placeholder="Game Genre"
             onChange={handleChangeGenre}
             value={genre}
           />
 
-          <label style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          <label style={{ fontSize: "2rem", fontWeight: "bold", color: "Gold" }}>
             Image
           </label>
           <input

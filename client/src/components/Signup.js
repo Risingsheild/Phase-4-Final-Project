@@ -48,7 +48,8 @@ function SignUp() {
       <Grid container>
         <Grid item xs={12} align="center" justify="center">
           <FormControl sx={{ m: 2 }}>
-            <Typography justifySelf={"center"}>Sign Up Here</Typography>
+            <Typography justifySelf={"center"}
+                style={{ fontSize: "2rem", fontWeight: "bold" }}>Sign Up Here</Typography>
             <TextField
               sx={{ m: 2 }}
               required
@@ -78,7 +79,7 @@ function SignUp() {
           <Button
             variant="contained"
             component={Link}
-            to="/"
+            to="/login"
             align="center"
             justify="center"
           >
