@@ -8,9 +8,8 @@ class ReviewsController < ApplicationController
     ## Create Method
 
     def create 
-        game = Game.find_by(id: params[:id])
-        review = @current_user.reviews.create!(review_params.merge(game_id: game))
-        if review 
+        review = @current_user.reviews.create!(review_params)
+            if review 
             render json: review, status: :created
         else 
             render json: { error: "Review Needs a Comment"}, status: :length_required
@@ -21,8 +20,8 @@ class ReviewsController < ApplicationController
     ## Update Method 
 
     def update 
-        if review = current_user.reviews.find(params[:id])
-            review.update!(review_params)
+        if review = @current_user.reviews.find(params[:id])
+            review.update!(comment: params[:comment])
             review.reload
             render json: review 
         else 
@@ -42,7 +41,7 @@ class ReviewsController < ApplicationController
     private 
 
     def review_params
-        params.require(:comment, :game_id)
+        params.require(:comment).permit(:game_id)
     end
 
 end

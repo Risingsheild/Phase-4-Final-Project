@@ -1,9 +1,10 @@
 
 import { useState, useContext } from "react";
 import { UserContext } from "./Context/User";
+import {useNavigate} from 'react-router-dom'
 
 function GameForm() {
-  const {addGames} = useContext(UserContext)
+  const {onAddGames} = useContext(UserContext)
 
   const defaultImage =
     "https://www.pixelstalk.net/wp-content/uploads/2016/05/Gaming-Logo-Wallpapers-Free-Download.jpg";
@@ -11,6 +12,9 @@ function GameForm() {
   const [genre, setGenre] = useState("");
   const [image, setImage] = useState(defaultImage);
   const [platform, setPlatform] = useState("");
+  const [errors, setErrors] = useState(null)
+
+  const navigate = useNavigate()
   
 
   function handleChangeTitle(e) {
@@ -30,16 +34,29 @@ function GameForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addGames({
+    const game = ({
       title: title,
       genre: genre,
       image_url: image,
       platform_id: platform,
     });
-  }
+      fetch("/games", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(game),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => onAddGames(data))
+          navigate('/games')
+        } else {
+          res.json().then((error) => setErrors(error.errors));
+        }
+      });
+    }
 
   return (
     <div>
+       <ul style={{ fontSize: "1.5rem", fontWeight: "bold", color: "red", background: "white"}}>{errors}</ul>
       <div className="GameForm">
         <form className="form" onSubmit={handleSubmit}>
           <h2>Add a New Game</h2>

@@ -41,7 +41,7 @@ function EditReview({id}) {
         <input
           type="text"
           id="comment"
-          placeholder="UpdateReview"
+          placeholder={"UpdateReview"}
           value={comment}
           onChange={handleChange}
         />

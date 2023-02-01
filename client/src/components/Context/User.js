@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const UserContext = React.createContext();
 
@@ -12,7 +12,7 @@ function UserProvider({ children }) {
   useEffect(() => {
     fetch("/me")
       .then((res) => res.json())
-      .then(data => {
+      .then((data) => {
         setUser(data);
         if (data.errors) {
           setLoggedIn(false);
@@ -25,7 +25,7 @@ function UserProvider({ children }) {
           setReviews(data.reviews);
           fetchGames();
         }
-      })
+      });
   }, []);
 
   function fetchGames() {
@@ -34,16 +34,8 @@ function UserProvider({ children }) {
       .then((data) => setGames(data));
   }
 
-  function addGames(game) {
-    fetch("/games", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(game),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setGames([...games, data]);
-      });
+  function onAddGames(newGame){
+    setGames([...games, newGame])
   }
 
   function addReview(newReview) {
@@ -90,12 +82,26 @@ function UserProvider({ children }) {
     setMyGames([]);
     setReviews([]);
   }
-  return(
-    <UserContext.Provider value={{user, games, reviews, loggedIn, myGames, login, logout, signup, addGames, addReview, handleUpdate, handleDelete}}>
-        {children}
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        games,
+        reviews,
+        loggedIn,
+        myGames,
+        login,
+        logout,
+        signup,
+        onAddGames,
+        addReview,
+        handleUpdate,
+        handleDelete,
+      }}
+    >
+      {children}
     </UserContext.Provider>
-  )
-
+  );
 }
 
-export {UserContext, UserProvider}
+export { UserContext, UserProvider };
