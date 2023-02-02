@@ -3,5 +3,5 @@ class Game < ApplicationRecord
 
     belongs_to :platform
 
-    validates :title,  presence: true
+    validates :title, :genre, :image_url, :platform_id, presence: true
 end

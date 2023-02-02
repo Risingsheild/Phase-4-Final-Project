@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
+    skip_before_action :authorized, only: [:index]
 
     def index 
-        reviews = current_user.reviews.all
-        render json: reviews, include: ['game']
+        reviews = Review.all
+        render json: reviews
+
     end
     
     ## Create Method
@@ -33,7 +35,7 @@ class ReviewsController < ApplicationController
     ## Destroy Method 
 
     def destroy 
-        review = current_user.reviews.find(params[:id])
+        review = @current_user.reviews.find(params[:id])
         review.destroy
         render json: {message: "Review Deleted"}
     end
@@ -41,7 +43,7 @@ class ReviewsController < ApplicationController
     private 
 
     def review_params
-        params.require(:comment).permit(:game_id)
+        params.permit(:comment, :game_id)
     end
 
 end

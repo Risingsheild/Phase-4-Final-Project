@@ -1,12 +1,11 @@
 import { useState, useContext } from "react";
 import { UserContext } from "./Context/User";
 
-
 function ReviewForm() {
-//  const {myGames} = useContext(UserContext)
- const {addReview} = useContext(UserContext)
- const [comment, setComment] = useState("")
- const [game_id, setGame_id] = useState("")
+  const { addReview } = useContext(UserContext);
+  const [comment, setComment] = useState("");
+  const [game_id, setGame_id] = useState("");
+  const [errors, setErrors] = useState(null)
 
   function handleChangeComment(e) {
     setComment(e.target.value);
@@ -30,13 +29,18 @@ function ReviewForm() {
       body: JSON.stringify(reviewData),
     })
       .then((r) => r.json())
-      .then(review =>  addReview(review))
-      }
-
-    // const renderMyGames = myGames.map(g => <li key={g.id}>{g.title}</li>)
-
+      .then((review) => {
+        if (!review.errors) {
+          addReview(review);
+        } else {
+          const errorsList = review.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsList);
+        }
+  })
+}
   return (
     <div>
+    <ul style={{ fontSize: "1.5rem", fontWeight: "bold", color: "red", background: "white"}}>{errors}</ul>
       <form onSubmit={handleSubmit} className="GameForm">
         <input
           type="text"
@@ -53,7 +57,6 @@ function ReviewForm() {
           onChange={handleChangeGame}
         />
         <button type="submit">Submit Review</button>
-        {/* <h4>{renderMyGames}</h4> */}
       </form>
     </div>
   );

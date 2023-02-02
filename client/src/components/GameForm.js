@@ -44,12 +44,14 @@ function GameForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(game),
-      }).then((res) => {
-        if (res.ok) {
-          res.json().then((data) => onAddGames(data))
+      }).then((res) => res.json())
+        .then((data) => {
+        if (!data.errors) {
+          onAddGames(data)
           navigate('/games')
         } else {
-          res.json().then((error) => setErrors(error.errors));
+          const errorsList = data.errors.map((e) => <li>{e}</li>);
+          setErrors(errorsList);
         }
       });
     }

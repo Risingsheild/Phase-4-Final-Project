@@ -6,12 +6,7 @@ class GamesController < ApplicationController
     end
 
     def create
-        game = Game.create!(
-            title: params[:title],
-            genre: params[:genre],
-            image_url: params[:image_url],
-            platform_id: params[:platform_id]
-        )
+        game = Game.create!(game_params)
         if game
             render json: game, status: :created
         else 
@@ -19,4 +14,11 @@ class GamesController < ApplicationController
         end
     end
     
+    private 
+
+        def game_params
+            params.permit(:title, :genre, :image_url, :platform_id)
+        end
+
+
 end
