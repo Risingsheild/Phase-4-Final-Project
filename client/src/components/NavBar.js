@@ -17,7 +17,7 @@ function NavBar() {
   if (loggedIn) {
     return (
       <div className="navBar">
-        <h2> Hello {user.username}</h2>
+        <h2> 🎮Welcome {user.username}🎮</h2>
         <NavLink to="/games">All Games</NavLink>
         <NavLink to="/addgames">Game Form</NavLink>
         <NavLink to="/reviews">My Reviews</NavLink>

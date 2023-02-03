@@ -14,7 +14,7 @@ function Home() {
           Please leave a review for any game you have played in the past or add
           a new game that isn't on the list
         </p>
-        <h4> Thank you and please come again </h4>
+        <h2 style={{color: "blue", background: 'white'}}> Thank you and please come again </h2>
       </div>
     );
   }
