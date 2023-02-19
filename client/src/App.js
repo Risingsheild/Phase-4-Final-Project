@@ -8,7 +8,6 @@ import Platforms from "./components/Platforms";
 import EditReview from "./components/EditReview";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import Game from "./components/Game";
 
 import "./components/style.css";
 
@@ -25,7 +24,6 @@ function App() {
         <Route path="/addgames" element={<GameForm />} />
         <Route path="/reviews/:id" element={<EditReview />} />
         <Route path="/platforms" element={<Platforms />} />
-        <Route path="/games/:id" element={<Game />}/>
       </Routes>
     </div>
   );
