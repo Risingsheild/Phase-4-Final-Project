@@ -20,7 +20,7 @@ function NavBar() {
         <h2> 🎮Welcome {user.username}🎮</h2>
         <NavLink to="/games">All Games</NavLink>
         <NavLink to="/addgames">Game Form</NavLink>
-        <NavLink to="/reviews">My Reviews</NavLink>
+        <NavLink to="/reviews">My Game Reviews</NavLink>
         <button className="logout-button" onClick={handleLogout}>
           Logout
         </button>

@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "./Context/User";
 import ReviewCard from "./ReviewCard";
-import ReviewForm from "./ReviewForm";
 
 function ReviewList() {
   const {reviews} = useContext(UserContext)
@@ -10,7 +9,6 @@ function ReviewList() {
     
   return (
     <div>
-      <ReviewForm />
     {renderReviews}
     </div>
   );

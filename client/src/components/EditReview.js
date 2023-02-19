@@ -27,6 +27,7 @@ function EditReview({id}) {
       .then((updatedReview) => {
         if (!updatedReview.errors) {
           handleUpdate(updatedReview)
+          alert("Review is updated")
         } else {
           const errorsList = updatedReview.errors.map(e => <li>{e}</li>)
           setErrors(errorsList)

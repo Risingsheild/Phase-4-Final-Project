@@ -29,7 +29,7 @@ function ReviewCard({ review }) {
       </div>
       <div className="Card">
       <img className= "img" src={review.game.image_url} alt={review.game.title}/>
-        <EditReview id={id} review={review} />
+        <EditReview id={review.id} />
         <br></br>
         <button onClick={handleFlipped}>Click When Finished Updating</button>
       </div>

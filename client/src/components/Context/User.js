@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const UserContext = React.createContext();
 
@@ -8,6 +9,11 @@ function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [myGames, setMyGames] = useState([]);
+  const [singleGame, setSingleGame] = useState([]);
+
+  const {id} = useParams()
+
+
 
   useEffect(() => {
     fetch("/me")
@@ -34,25 +40,29 @@ function UserProvider({ children }) {
       .then((data) => setGames(data));
   }
 
+
+
   function onAddGames(newGame){
     setGames([...games, newGame])
   }
 
   function addReview(newReview) {
     setReviews([...reviews, newReview]);
-    setGames([...games, reviews.game]);
+    fetchGames();
   }
 
   function handleUpdate(currentReview) {
     const UpdateReview = reviews.map((review) =>
       review.id === currentReview.id ? currentReview : review
     );
-    setReviews(UpdateReview);
+    setReviews(UpdateReview)
+    fetchGames()
   }
 
   function onDeleteReview(id) {
     const updateReviewList = reviews.filter((review) => review.id !== id);
     setReviews(updateReviewList);
+    fetchGames()
   }
 
   function handleDelete(id) {
@@ -86,6 +96,7 @@ function UserProvider({ children }) {
     <UserContext.Provider
       value={{
         user,
+        singleGame,
         games,
         reviews,
         loggedIn,

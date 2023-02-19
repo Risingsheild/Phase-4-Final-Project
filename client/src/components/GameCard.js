@@ -1,16 +1,30 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import {useState} from "react";
+import ReactCardFlip from "react-card-flip";
+import { useParams } from "react-router-dom";
+
+import ReviewForm from "./ReviewForm";
 
 function GameCard({ game }) {
-  const navigate = useNavigate();
+  const { id } = useParams();
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  const gameReview = game.reviews.map((element) => (
+  const gameReviews = game.reviews.map((element) => (
     <li key={element.id} style={{ fontWeight: "bold" }}>
       {element.comment}
     </li>
   ));
 
+  function handleFlipped() {
+    setIsFlipped(!isFlipped);
+  }
+
+
+
+
+
+
   return (
+    <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
     <div className="Card">
       <h1 className="gameHeader">
         {game.id}: {game.title} on {game.platform.title} <br></br> Genre:{" "}
@@ -18,13 +32,19 @@ function GameCard({ game }) {
       </h1>
       <img className="image" src={game.image_url} alt={game.title} />
 
-      {gameReview}
+      {gameReviews}
 
       <br></br>
-      <button onClick={() => navigate(`/reviews`)}>
-        Click here to leave a Review
+      <button onClick={handleFlipped}>   Click here to leave a Review
       </button>
+      </div>
+      <div className="Card">
+      <img className="image" src={game.image_url} alt={game.title} />
+      <ReviewForm id={game.id} />
+      <br></br>
+      <button onClick={handleFlipped}> Flip to front side</button>
     </div>
+  </ReactCardFlip>
   );
 }
 
