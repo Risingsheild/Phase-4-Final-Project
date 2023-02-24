@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 const UserContext = React.createContext();
 
@@ -9,9 +8,7 @@ function UserProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [myGames, setMyGames] = useState([]);
-  const [singleGame, setSingleGame] = useState([]);
 
-  const {id} = useParams()
 
 
 
@@ -48,7 +45,7 @@ function UserProvider({ children }) {
 
   function addReview(newReview) {
     setReviews([...reviews, newReview]);
-    fetchGames();
+    fetchGames()
   }
 
   function handleUpdate(currentReview) {
@@ -96,7 +93,6 @@ function UserProvider({ children }) {
     <UserContext.Provider
       value={{
         user,
-        singleGame,
         games,
         reviews,
         loggedIn,

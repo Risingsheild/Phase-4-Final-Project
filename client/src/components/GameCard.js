@@ -1,11 +1,9 @@
 import {useState} from "react";
 import ReactCardFlip from "react-card-flip";
-import { useParams } from "react-router-dom";
 
 import ReviewForm from "./ReviewForm";
 
 function GameCard({ game }) {
-  const { id } = useParams();
   const [isFlipped, setIsFlipped] = useState(false);
 
   const gameReviews = game.reviews.map((element) => (
@@ -27,7 +25,7 @@ function GameCard({ game }) {
     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
     <div className="Card">
       <h1 className="gameHeader">
-        {game.id}: {game.title} on {game.platform.title} <br></br> Genre:{" "}
+         {game.title} on {game.platform.title} <br></br> Genre:{" "}
         {game.genre}
       </h1>
       <img className="image" src={game.image_url} alt={game.title} />
