@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import { UserContext } from "./Context/User";
 
-function ReviewForm({id}) {
+function ReviewForm({game}) {
   const { addReview } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState(null)
+
+
 
   function handleChangeComment(e) {
     setComment(e.target.value);
@@ -15,7 +17,7 @@ function ReviewForm({id}) {
     e.preventDefault();
     const reviewData = {
       comment: comment,
-      game_id: id 
+      game_id: game.id 
     };
     fetch("/reviews", {
       method: "POST",
@@ -25,6 +27,7 @@ function ReviewForm({id}) {
       body: JSON.stringify(reviewData),
     })
       .then((r) => r.json())
+      
       .then((review) => {
         if (!review.errors) {
           addReview(review);

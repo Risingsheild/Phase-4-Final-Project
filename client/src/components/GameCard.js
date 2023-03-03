@@ -38,7 +38,7 @@ function GameCard({ game }) {
       </div>
       <div className="Card">
       <img className="image" src={game.image_url} alt={game.title} />
-      <ReviewForm id={game.id} />
+      <ReviewForm game={game} />
       <br></br>
       <button onClick={handleFlipped}> Flip to front side</button>
     </div>

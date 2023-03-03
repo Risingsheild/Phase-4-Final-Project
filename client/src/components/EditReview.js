@@ -19,7 +19,7 @@ function EditReview({id}) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
       body: JSON.stringify(reviewData),
     })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+//import {useParams} from 'react-router-dom'
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
@@ -9,7 +9,7 @@ function UserProvider({ children }) {
   const [reviews, setReviews] = useState([]);
   const [myGames, setMyGames] = useState([]);
 
-
+  //const {id} = useParams()
 
 
   useEffect(() => {
@@ -41,12 +41,36 @@ function UserProvider({ children }) {
 
   function onAddGames(newGame){
     setGames([...games, newGame])
+  }  
+  
+  
+  function login(user) {
+    setUser(user);
+    setLoggedIn(true);
+    fetchGames();
+    setReviews(user.reviews);
+    setMyGames(user.unique_games);
+  }
+
+  function logout() {
+    setUser({});
+    setLoggedIn(false);
+  }
+
+  function signup(user) {
+    setUser(user);
+    setLoggedIn(true);
+    fetchGames();
+    setMyGames([]);
+    setReviews([]);
   }
 
   function addReview(newReview) {
-    setReviews([...reviews, newReview]);
-    fetchGames()
-  }
+     console.log("new Review", newReview);
+     setReviews([...reviews, newReview]);
+     fetchGames()
+   
+}
 
   function handleUpdate(currentReview) {
     const UpdateReview = reviews.map((review) =>
@@ -69,26 +93,6 @@ function UserProvider({ children }) {
     onDeleteReview(id);
   }
 
-  function login(user) {
-    setUser(user);
-    setLoggedIn(true);
-    fetchGames();
-    setReviews(user.reviews);
-    setMyGames(user.unique_games);
-  }
-
-  function logout() {
-    setUser({});
-    setLoggedIn(false);
-  }
-
-  function signup(user) {
-    setUser(user);
-    setLoggedIn(true);
-    fetchGames();
-    setMyGames([]);
-    setReviews([]);
-  }
   return (
     <UserContext.Provider
       value={{
