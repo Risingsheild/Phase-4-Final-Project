@@ -1,10 +1,9 @@
 import { useState, useContext} from "react";
 import { UserContext } from "./Context/User";
 
-function EditReview({id}) {
-  const [comment, setComment] = useState("");
+function EditReview({review}) {
+  const [comment, setComment] = useState(review.comment);
   const [errors, setErrors] = useState([])
-
   const {handleUpdate} = useContext(UserContext)
 
   function handleChange(e) {
@@ -15,7 +14,7 @@ function EditReview({id}) {
     e.preventDefault();
     const reviewData = { comment: comment };
 
-    fetch(`/reviews/${id}`, {
+    fetch(`/reviews/${review.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -27,6 +26,7 @@ function EditReview({id}) {
       .then((updatedReview) => {
         if (!updatedReview.errors) {
           handleUpdate(updatedReview)
+          setComment("")
           alert("Review is updated")
         } else {
           const errorsList = updatedReview.errors.map(e => <li>{e}</li>)

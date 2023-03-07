@@ -11,7 +11,6 @@ function UserProvider({ children }) {
 
   //const {id} = useParams()
 
-
   useEffect(() => {
     fetch("/me")
       .then((res) => res.json())
@@ -37,13 +36,21 @@ function UserProvider({ children }) {
       .then((data) => setGames(data));
   }
 
+  function onAddGames(newGame) {
+    setGames([...games, newGame]);
+  }
+  function addReview(newReview) {
+    //console.log("new Review", newReview.game.id);
+    const g = games.find((ug) => ug.id === newReview.game.id);
+    //console.log(g);
+    const newG = { ...g, reviews: [...g.reviews, newReview] };
+    //console.log('New G', newG);
+    const newGameList = games.map((game) => (game.id === g.id ? newG : game));
+    //console.log('new games', newGameList);
+    setReviews([...reviews, newReview]);
+    setGames(newGameList);
+  }
 
-
-  function onAddGames(newGame){
-    setGames([...games, newGame])
-  }  
-  
-  
   function login(user) {
     setUser(user);
     setLoggedIn(true);
@@ -65,25 +72,26 @@ function UserProvider({ children }) {
     setReviews([]);
   }
 
-  function addReview(newReview) {
-     console.log("new Review", newReview);
-     setReviews([...reviews, newReview]);
-     fetchGames()
-   
-}
-
   function handleUpdate(currentReview) {
-    const UpdateReview = reviews.map((review) =>
+    const g = games.find((ug) => ug.id === currentReview.game.id);
+
+    const UpdateMyReview = reviews.map((review) =>
       review.id === currentReview.id ? currentReview : review
     );
-    setReviews(UpdateReview)
-    fetchGames()
+
+    const UpdateGameReview = g.reviews.map((review) =>
+      review.id === currentReview.id ? currentReview : review
+    );
+    const newG = { ...g, reviews: UpdateGameReview };
+    const newGameList = games.map((game) => (game.id === g.id ? newG : game));
+    setReviews(UpdateMyReview);
+    setGames(newGameList);
   }
 
   function onDeleteReview(id) {
     const updateReviewList = reviews.filter((review) => review.id !== id);
     setReviews(updateReviewList);
-    fetchGames()
+    fetchGames();
   }
 
   function handleDelete(id) {

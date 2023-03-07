@@ -31,6 +31,7 @@ function ReviewForm({game}) {
       .then((review) => {
         if (!review.errors) {
           addReview(review);
+          setComment("")
         } else {
           const errorsList = review.errors.map((e) => <li>{e}</li>);
           setErrors(errorsList);
